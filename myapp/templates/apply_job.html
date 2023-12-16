@@ -1,0 +1,28 @@
+<!-- apply_job.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Jobs</title>
+</head>
+<body>
+    <h2>{{ industry.name }} Jobs</h2>
+    <ul>
+        {% for job in jobs %}
+            <li>
+                <strong>{{ job.title }}</strong>
+                <p>{{ job.description }}</p>
+                <!-- Add more job details as needed -->
+
+                <!-- Create a form for job application -->
+                <form method="post" action="{% url 'myapp:apply_job' industry_id=industry.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="job_id" value="{{ job.id }}">
+                    <button type="submit">Apply</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

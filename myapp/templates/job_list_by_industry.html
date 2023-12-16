@@ -1,0 +1,45 @@
+<!-- apply_job.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>{{ industry.name }} Jobs</title>
+   <!-- Add Bootstrap CSS link -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+   <div class="container mt-4">
+      <h2>{{ industry.name }} Jobs</h2>
+      <div class="row">
+         {% for job in jobs %}
+            <div class="col-md-6 mb-4">
+               <div class="card">
+                  <div class="card-body">
+                     <h5 class="card-title">{{ job.title }}</h5>
+                     <p class="card-text">{{ job.description }}</p>
+                     <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Description:</strong> {{ job.Description }}</li>
+                        <!--<li class="list-group-item"><strong>Requirements:</strong> {{ job.Requirements }}</li>-->
+                        <li class="list-group-item"><strong>JobType:</strong> {{ job.JobType }}</li>
+                        <li class="list-group-item"><strong>Companyname:</strong> {{ job.Companyname }}</li>
+                        <li class="list-group-item"><strong>Salary:</strong> {{ job.salary }}</li>
+                        <li class="list-group-item"><strong>Location:</strong> {{ job.Location }}</li>
+                        <!-- Add more job details as needed -->
+                     </ul>
+                     <!-- Create a hyperlink to the job application form -->
+                     <a href="{% url 'myapp:apply_job' industry_id=industry.id job_id=job.id %}" class="btn btn-primary">Apply now</a>
+                     <p>For more details:<a href="{% url 'myapp:Contact us' %}" class="btn btn-primary">Contact Us</a></p>
+                  </div>
+               </div>
+            </div>
+         {% endfor %}
+      </div>
+   </div>
+
+   <!-- Add Bootstrap JS and Popper.js scripts -->
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

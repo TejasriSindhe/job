@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Create Sector for {{ industry.name }}</h2>
+
+  <form method="post" action="{% url 'create_sector' industry_id=industry.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Create Sector</button>
+  </form>
+
+  <a href="{% url 'industry_detail' pk=industry.id %}">Back to Industry Details</a>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% csrf_token %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>All Industries</title>
+   <!-- Add Bootstrap CSS link -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+   <style>
+      body {
+         background-color: #f8f9fa;
+      }
+      .container {
+         margin-top: 50px;
+      }
+      .company-card {
+         border: 1px solid #dee2e6;
+         border-radius: 10px;
+         margin-bottom: 20px;
+         padding: 20px;
+         background-color: #ffffff;
+      }
+      .company-card:hover{
+         box-shadow: 0 0 20px 0 rgba(0, 0, 0.3); width: 500px;
+         transform: translatey(20px);
+         border-left-width: 20px;
+         border-left-width: 20px;
+  }
+   </style>
+</head>
+<body>
+   <div class="container">
+      <h2 class="text-center mb-4">Types of Industry and Careers You Can Pursue Within Them</h2>
+      <div class="row">
+         {% for industry in industries %}
+            <div class="col-md-6">
+               <div class="card company-card">
+                  <div class="card-body">
+                     <h5 class="card-title">{{ industry.name }}</h5>
+                     <p class="card-text">{{ industry.description }}</p>
+                     <!-- Add more industry details as needed -->
+                     <!-- Create a hyperlink to the job list for the industry -->
+                     <a href="{% url 'myapp:job_list_by_industry' pk=industry.id %}" class="btn btn-primary">View Sectors</a>
+                  </div>
+               </div>
+            </div>
+         {% endfor %}
+      </div>
+   </div>
+
+   <!-- Add Bootstrap JS and Popper.js scripts -->
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
